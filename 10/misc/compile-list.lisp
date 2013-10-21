@@ -1,0 +1,5 @@
+(let* ((a '(x y))
+       (b '(+ x y))
+       (c (list 'lambda a b))
+       (f (compile nil c)))
+  (funcall f 3 6))

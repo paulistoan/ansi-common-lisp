@@ -1,0 +1,6 @@
+(defun a-occurrences-iterative (lst)
+  (let ((n 0))
+    (dolist (obj lst)
+      (if (eql 'a obj)
+          (setf n (+ n 1))))
+    n))

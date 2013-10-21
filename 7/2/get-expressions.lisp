@@ -1,0 +1,8 @@
+(defun get-expressions (filename)
+  (with-open-file (str filename :direction :input)
+    (let ((result nil))
+      (do ((expression (read str nil 'eof)
+                       (read str nil 'eof)))
+          ((eql expression 'eof))
+        (setf result (cons expression result)))
+      (nreverse result))))

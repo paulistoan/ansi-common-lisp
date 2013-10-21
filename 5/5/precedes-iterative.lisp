@@ -1,0 +1,8 @@
+(defun precedes-iterative (obj vec)
+  (do ((i (- (length vec) 2) (- i 1))
+       (res nil))
+      ((< i 0) res)
+    (if (eql (aref vec (+ i 1)) obj)
+        (let ((x (aref vec i)))
+          (if (not (member x res))
+              (setf res (cons x res)))))))

@@ -1,0 +1,13 @@
+(defmacro save-vars (vars &rest body)
+  (let ((ivs (gensym)))
+    `(let ((,ivs (make-array ,(length vars))))
+       ,@(let ((i -1))
+           (mapcar #'(lambda (var)
+                       `(setf (svref ,ivs ,(incf i)) ,var))
+                   vars))
+       (prog1
+           (progn ,@body)
+         ,@(let ((i -1))
+             (mapcar #'(lambda (var)
+                         `(setf ,var (svref ,ivs ,(incf i))))
+                     vars))))))

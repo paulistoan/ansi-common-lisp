@@ -1,0 +1,7 @@
+(defun intersperse-iterative (obj lst)
+  (do ((i (- (length lst) 1) (- i 1))
+       (res nil))
+      ((< i 0) res)
+    (setf res (cons (nth i lst) res))
+    (if (not (zerop i))
+        (setf res (cons obj res)))))

@@ -1,0 +1,5 @@
+(let (g)
+  (defun greatest (x)
+    (if (or (null g) (> x g))
+        (setf g x))
+    g))

@@ -1,0 +1,11 @@
+(defun remove-comments (fin fout)
+  (with-open-file (sin fin :direction :input)
+    (with-open-file (sout fout :direction :output
+                          :if-exists :supersede)
+      (let ((out t))
+        (do ((c (read-char sin nil 'eof)
+                (read-char sin nil 'eof)))
+            ((eql c 'eof))
+          (cond ((char= c #\Newline) (setf out t))
+                ((char= c #\%) (setf out nil)))
+          (when out (princ c sout)))))))

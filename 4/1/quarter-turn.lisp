@@ -1,0 +1,6 @@
+(defun quarter-turn (i)
+  (let ((dim (car (array-dimensions i))))
+    (let ((res (make-array (list dim dim))))
+      (dotimes (x dim res)
+        (dotimes (y dim)
+          (setf (aref res y (- (- dim 1) x)) (aref i x y)))))))

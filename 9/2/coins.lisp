@@ -1,0 +1,8 @@
+(defun coins (sum)
+  (let ((remainder sum)
+        (coins nil))             
+    (dolist (val (list 25 10 5 1)
+             (apply #'values (nreverse coins)))
+      (let ((cur (floor (/ remainder val))))
+        (push cur coins)
+        (decf remainder (* val cur))))))

@@ -1,0 +1,16 @@
+(defun most (fn lst)
+  (let (f fv s sv)
+    (dolist (c lst (values f s))
+      (let ((cv (funcall fn c)))
+        (if (null f)
+            (setf f c fv cv)
+            (if (null s)
+                (if (> fv cv)
+                    (setf s c sv cv)
+                    (setf s f sv fv
+                          f c fv cv))
+                (if (> cv fv)
+                    (setf s f sv fv
+                          f c fv cv)
+                    (if (> cv sv)
+                        (setf s c sv cv)))))))))
